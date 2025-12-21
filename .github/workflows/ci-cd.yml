@@ -30,4 +30,4 @@ jobs:
         run: npm test -- --watchAll=false
 
       - name: Build project
-        run: npm start
+        run: npm run build
