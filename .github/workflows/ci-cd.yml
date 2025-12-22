@@ -33,7 +33,7 @@ jobs:
       - name: Set Git identity
         run: |
           git config --global user.name "Nusrath Jahan"
-          git config --global user.email "nusrathjahan0204.com"
+          git config --global user.email "nusrathjahan0204@gmail.com"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
