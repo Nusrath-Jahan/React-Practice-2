@@ -8,10 +8,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: my-app
-
     steps:
       - uses: actions/checkout@v3
 
@@ -19,11 +15,20 @@ jobs:
         with:
           node-version: 18
 
-      - run: npm install
-      - run: npm test -- --watchAll=false
-      - run: npm run build
+      - name: Install dependencies
+        working-directory: my-app
+        run: npm install
+
+      - name: Run tests
+        working-directory: my-app
+        run: npm test -- --watchAll=false
+
+      - name: Build
+        working-directory: my-app
+        run: npm run build
 
       - name: Deploy to GitHub Pages
-        run: npm run deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: my-app/build
