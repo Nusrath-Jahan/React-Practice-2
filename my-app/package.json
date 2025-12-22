@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://nusrath-jahan.github.io/React-Practice-2",
+ "homepage": "https://Nusrath-Jahan.github.io/React-Practice-2",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
