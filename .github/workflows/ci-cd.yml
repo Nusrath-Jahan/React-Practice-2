@@ -27,6 +27,11 @@ jobs:
         working-directory: my-app
         run: npm run build
 
+      - name: Set Git identity
+        run: |
+          git config --global user.name "Nusrath Jahan"
+          git config --global user.email "nusrathjahan0204.com"
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
