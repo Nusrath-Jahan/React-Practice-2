@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Typography, Card, CardContent } from "@mui/material";
-
+import calculateAge from "../component/calculateAge";
 function Home() {
   const [data, setData] = useState(null);
   const [seconds, setSeconds ] = useState(0);
   const [isRunning, setIsRunning ] = useState(false);
-
+const [dob, setDob ] = useState("");
+const [age, setAge ] = useState(null);
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/posts/1")
@@ -25,6 +26,15 @@ function Home() {
   clearInterval(intervalId);
 }
   }, [isRunning])
+
+  const handelChange = (e) => {
+    const value = e.target.value;
+    setDob(value);
+
+    if (value){
+      setAge(calculateAge(value));
+    }
+  }
 
   return (
     <>
@@ -47,6 +57,11 @@ function Home() {
 <button onClick={() => setIsRunning(true)}>Start</button>
 <button onClick={() => setIsRunning(false)} style={{ marginLeft: "10px" }}>Stop</button>
 <button onClick={()=> setSeconds(0)} style={{marginLeft: '10px'}}>Reset</button>
+</div>
+<div>
+  <h2>Calculate your age</h2>
+  <input type="date" value={dob} onChange={handelChange}/>
+{age !== null && <p>Your age is : {age}</p>}
 </div>
 
   </>
